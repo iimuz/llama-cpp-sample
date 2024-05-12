@@ -1,7 +1,7 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["cmds", "dotenv"],
+  "words": ["cmds", "cuda", "dotenv", "gguf"],
   "dictionaries": [],
   "ignorePaths": ["**/.git/**"]
 }
