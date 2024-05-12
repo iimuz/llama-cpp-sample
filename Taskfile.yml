@@ -11,14 +11,16 @@ tasks:
     deps:
       - clean
     cmds:
+      - git submodule init
+      - git submodule update
       - task: build
   clean:
     desc: Clean files.
     cmds:
-      - cd llama.cpp && git clean -xdf llama.cpp
+      - cd llama.cpp && git clean -xdf .
 
   build:
     desc: Build llama.cpp.
     dir: llama.cpp
     cmds:
-      - make -j4
+      - make -j4 LLAMA_CUDA=1
