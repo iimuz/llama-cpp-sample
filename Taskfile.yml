@@ -24,3 +24,15 @@ tasks:
     dir: llama.cpp
     cmds:
       - make -j4 LLAMA_CUDA=1
+
+  download-model:
+    desc: Download model.
+    dir: llama.cpp/models
+    cmds:
+      - wget https://huggingface.co/QuantFactory/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct.Q4_K_M.gguf?download=true
+
+  inference:
+    desc: Inference.
+    dir: llama.cpp
+    cmds:
+      - 'llama.cpp/main -m llama.cpp/models/llama3.gguf --temp 0.8 -ngl 32 -b 512 -p "### Instruction: What is the height of Mount Fuji? ### Response:"'
