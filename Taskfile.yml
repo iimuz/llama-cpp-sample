@@ -23,7 +23,23 @@ tasks:
     desc: Build llama.cpp.
     dir: llama.cpp
     cmds:
+      # - task: build-cuda
+      - task: build-mac
+  build-cuda:
+    desc: Build llama.cpp.
+    dir: llama.cpp
+    cmds:
       - make -j4 LLAMA_CUDA=1
+  build-mac:
+    desc: Build llama.cpp using METAL.
+    dir: llama.cpp
+    platform: ["darwin"]
+    cmds:
+      # デフォルトで有効のため追加設定は不要
+      #
+      # > On MacOS, Metal is enabled by default. Using Metal makes the computation run on the GPU.
+      # > <https://github.com/ggerganov/llama.cpp>
+      - make -j4
 
   download-model:
     desc: Download model.
@@ -35,4 +51,4 @@ tasks:
     desc: Inference.
     dir: llama.cpp
     cmds:
-      - 'llama.cpp/main -m llama.cpp/models/llama3.gguf --temp 0.8 -ngl 32 -b 512 -p "### Instruction: What is the height of Mount Fuji? ### Response:"'
+      - './main -m models/llama3.gguf --temp 0.1 -ngl 32 -b 512 -p "### Instruction: What is the height of Mount Fuji? ### Response:"'
